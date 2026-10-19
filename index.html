@@ -1,97 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intel Sustainability Summit Check-In</title>
-    <!-- Add Font Awesome CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Hero section with Intel branding -->
-    <div class="hero">
-      <div class="hero-content">
-        <img src="img/intel-logo.svg" alt="Intel Logo" class="intel-logo" />
-        <h1>Team Sustainability Summit</h1>
-        <div class="hero-divider"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#003c71">
+
+  <title>Intel | Sustainability Summit Check-In</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+
+      <div class="brand">
+        <img
+          src="img/intel-logo.svg"
+          alt="Intel"
+          class="intel-logo"
+        >
+
+        <span class="brand-separator"></span>
+
+        <span>SUSTAINABILITY SUMMIT</span>
+      </div>
+
+      <div class="hero-copy">
+
+        <span class="eyebrow">
+          <span class="live-dot"></span>
+          EVENT CHECK-IN • LIVE TRACKER
+        </span>
+
+        <h1>
+          Showing up for a<br>
+          <em>better tomorrow.</em>
+        </h1>
+
         <p>
-          <i class="fas fa-leaf"></i> Check-in system for sustainability event
-          attendees
+          Every check-in counts. Join your sustainability team
+          and help move the summit forward.
         </p>
+
       </div>
+
+      <div class="hero-bottom">
+
+        <span>
+          <i class="fa-solid fa-leaf"></i>
+          Three teams. One shared mission.
+        </span>
+
+        <span>INTEL SUSTAINABILITY SUMMIT</span>
+
+      </div>
+
     </div>
-    <!-- Attendance tracking -->
-    <div class="attendance-tracker">
-      <div class="attendance-header">
-        <i class="fas fa-users"></i>
-        Attendance: <span id="attendeeCount">0</span>/50
+  </header>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- ATTENDANCE DASHBOARD -->
+    <section class="attendance-panel">
+
+      <div class="attendance-top">
+
+        <div>
+          <span class="section-kicker">
+            LIVE ATTENDANCE
+          </span>
+
+          <h2>Summit turnout</h2>
+
+          <p>
+            Track our progress toward the attendance goal.
+          </p>
+        </div>
+
+        <div class="attendance-number">
+
+          <strong id="attendeeCount">0</strong>
+
+          <span>
+            / <span id="goalDisplay">50</span>
+            <small>ATTENDEES</small>
+          </span>
+
+        </div>
+
       </div>
+
+
+      <div class="progress-meta">
+
+        <span>Attendance goal</span>
+
+        <strong id="progressPercent">0%</strong>
+
+      </div>
+
+
       <div class="progress-container">
-        <div id="progressBar" class="progress-bar"></div>
-      </div>
-    </div>
-    <div class="container">
-      <!-- Feedback message -->
-      <p id="greeting"></p>
 
-      <!-- Check-in form -->
-      <form class="check-in" id="checkInForm">
-        <label for="attendeeName" class="form-label">Attendee Check-In</label>
-        <div class="form-group">
-          <div class="input-wrapper">
-            <input
-              type="text"
-              id="attendeeName"
-              name="attendeeName"
-              placeholder="Enter name..."
-              required
-            />
-            <select id="teamSelect" name="team" required>
-              <option value="" disabled selected>Select Team...</option>
-              <option value="water">Team Water Wise</option>
-              <option value="zero">Team Net Zero</option>
-              <option value="power">Team Renewables</option>
-            </select>
+        <div
+          id="progressBar"
+          class="progress-bar"
+          role="progressbar"
+          aria-label="Attendance progress"
+          aria-valuemin="0"
+          aria-valuemax="50"
+          aria-valuenow="0"
+        ></div>
+
+      </div>
+
+
+      <div class="progress-foot">
+
+        <span>
+          <i class="fa-solid fa-circle-check"></i>
+          Every person makes a difference
+        </span>
+
+        <span id="remainingText">
+          50 check-ins to go
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- TWO-COLUMN DASHBOARD -->
+    <div class="content-grid">
+
+
+      <!-- CHECK-IN FORM -->
+      <section class="check-in-panel">
+
+        <div class="panel-heading">
+
+          <span class="panel-icon">
+            <i class="fa-solid fa-user-plus"></i>
+          </span>
+
+          <div>
+
+            <span class="section-kicker">
+              WELCOME ABOARD
+            </span>
+
+            <h2>Attendee check-in</h2>
+
           </div>
+
+        </div>
+
+
+        <p class="panel-description">
+          Ready to make an impact? Add your name and choose your team.
+        </p>
+
+
+        <p
+          id="greeting"
+          class="greeting"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></p>
+
+
+        <form id="checkInForm" class="check-in">
+
+          <label for="attendeeName">
+            Full name
+          </label>
+
+          <input
+            id="attendeeName"
+            name="attendeeName"
+            type="text"
+            placeholder="e.g. Emmanuel Okwuma"
+            maxlength="80"
+            autocomplete="name"
+            required
+          >
+
+
+          <label for="teamSelect">
+            Sustainability team
+          </label>
+
+          <select
+            id="teamSelect"
+            name="team"
+            required
+          >
+
+            <option value="" disabled selected>
+              Choose your team
+            </option>
+
+            <option value="water">
+              Team Water Wise
+            </option>
+
+            <option value="zero">
+              Team Net Zero
+            </option>
+
+            <option value="power">
+              Team Renewables
+            </option>
+
+          </select>
+
+
           <button type="submit" id="checkInBtn">
-            <i class="fas fa-user-check"></i> Check In
-          </button>
-        </div>
-      </form>
 
-      <!-- Team stats -->
-      <div class="team-stats">
-        <h3>Team Attendance</h3>
-        <div class="teams-grid">
-          <div class="team-card water">
-            <span class="team-name">🌊 Team Water Wise</span>
-            <span class="team-count" id="waterCount">0</span>
+            Complete check-in
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+        </form>
+
+
+        <p class="form-note">
+
+          <i class="fa-solid fa-shield-halved"></i>
+
+          Check-ins are saved in this browser.
+
+        </p>
+
+      </section>
+
+
+
+      <!-- TEAM LEADERBOARD -->
+      <section class="team-panel">
+
+        <div class="panel-heading">
+
+          <span class="panel-icon">
+            <i class="fa-solid fa-chart-simple"></i>
+          </span>
+
+          <div>
+
+            <span class="section-kicker">
+              FRIENDLY COMPETITION
+            </span>
+
+            <h2>Team leaderboard</h2>
+
           </div>
-          <div class="team-card zero">
-            <span class="team-name">🌿 Team Net Zero</span>
-            <span class="team-count" id="zeroCount">0</span>
-          </div>
-          <div class="team-card power">
-            <span class="team-name">⚡ Team Renewables</span>
-            <span class="team-count" id="powerCount">0</span>
-          </div>
+
         </div>
-      </div>
+
+
+        <p class="panel-description">
+          See who's showing up for a more sustainable future.
+        </p>
+
+
+        <div class="teams-grid">
+
+
+          <!-- WATER WISE -->
+          <div class="team-card water">
+
+            <div class="team-icon">
+              <i class="fa-solid fa-droplet"></i>
+            </div>
+
+            <div class="team-info">
+
+              <strong>Water Wise</strong>
+
+              <span>Conserve every drop</span>
+
+            </div>
+
+            <div class="team-total">
+
+              <strong id="waterCount">0</strong>
+
+              <small>CHECK-INS</small>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- NET ZERO -->
+          <div class="team-card zero">
+
+            <div class="team-icon">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div class="team-info">
+
+              <strong>Net Zero</strong>
+
+              <span>Lower our footprint</span>
+
+            </div>
+
+            <div class="team-total">
+
+              <strong id="zeroCount">0</strong>
+
+              <small>CHECK-INS</small>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- RENEWABLES -->
+          <div class="team-card power">
+
+            <div class="team-icon">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <div class="team-info">
+
+              <strong>Renewables</strong>
+
+              <span>Power a cleaner future</span>
+
+            </div>
+
+            <div class="team-total">
+
+              <strong id="powerCount">0</strong>
+
+              <small>CHECK-INS</small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="leader-note"
+          id="leaderNote"
+          aria-live="polite"
+        >
+          The competition starts with the first check-in.
+        </p>
+
+      </section>
+
     </div>
 
-    <footer class="footer">
-      &copy; 2025 Intel •
-      <a
-        href="https://www.intel.com/content/www/us/en/corporate-responsibility/2030-goals.html"
-        class="footer-link"
-        >Sustainability Goals</a
-      >
-    </footer>
 
-    <script src="script.js"></script>
-  </body>
+
+    <!-- ATTENDEE LIST -->
+    <section class="attendee-panel">
+
+      <div class="attendee-header">
+
+        <div>
+
+          <span class="section-kicker">
+            OUR COMMUNITY
+          </span>
+
+          <h2>Checked-in attendees</h2>
+
+        </div>
+
+
+        <span id="listCount" class="list-count">
+          0 registered
+        </span>
+
+      </div>
+
+
+      <ul id="attendeeList" class="attendee-list">
+
+        <li class="empty-state">
+          No attendees yet. Be the first to check in.
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <span>
+      Intel Sustainability Summit · Building a more sustainable future
+    </span>
+
+    <a
+      href="https://www.intel.com/content/www/us/en/corporate-responsibility/2030-goals.html"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      Explore Intel's sustainability goals
+
+      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+    </a>
+
+  </footer>
+
+
+
+  <!-- CELEBRATION MODAL -->
+  <div
+    id="celebrationOverlay"
+    class="celebration-overlay"
+    hidden
+  >
+
+    <!-- CONFETTI -->
+    <div
+      id="confettiLayer"
+      class="confetti-layer"
+      aria-hidden="true"
+    ></div>
+
+
+    <!-- CELEBRATION CARD -->
+    <section
+      class="celebration-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="celebrationTitle"
+      aria-describedby="celebrationDescription"
+    >
+
+      <div class="celebration-emblem">
+
+        <i class="fa-solid fa-trophy"></i>
+
+      </div>
+
+
+      <span class="section-kicker">
+        MILESTONE UNLOCKED
+      </span>
+
+
+      <h2 id="celebrationTitle">
+        Attendance goal reached!
+      </h2>
+
+
+      <p id="celebrationDescription"></p>
+
+
+      <div class="celebration-stat">
+
+        <strong id="celebrationTotal">50</strong>
+
+        <span>ATTENDEES CHECKED IN</span>
+
+      </div>
+
+
+      <button
+        id="closeCelebration"
+        type="button"
+      >
+
+        Continue to dashboard
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </button>
+
+    </section>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
 </html>
